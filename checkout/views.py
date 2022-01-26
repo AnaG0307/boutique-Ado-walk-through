@@ -44,7 +44,7 @@ def checkout(request):
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
-                                 order=order,
+                                order=order,
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
@@ -58,7 +58,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save_info' in request.POST
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
